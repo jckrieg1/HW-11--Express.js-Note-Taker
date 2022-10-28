@@ -1,47 +1,25 @@
 const router = require('express').Router();
 const fs = require('fs');
-const { writeToFile } = require('../helpers/fsUtils');
+const { readAndAppend, readData, writeToFile} = require('../db/fsUtils');
+const { v4: uuidv4 } = require('uuid')
 
+router.get("/notes", (req, res) => {
+    readData() 
+    .then(data => {
+        console.log(data)
+        res.json(JSON.parse(data))
+    })
+    .catch(res => console.log(res))
+})
 
-// router.post('/notes', function(req, res) {
-//     const userNotes = req.body;
-//     console.log(userNotes);
-//     res.json(userNotes);
-// })
+router.put("/notes/:id", (req, res) => {
+    readAndAppend({id:uuidv4(), ...req.body}, "db/db.json");
+    res.json(req.body);
+})
 
-
-// router.get('/api/notes', function(req, res) {
-// fs.readFile('./db/db.json', (err, data) => {
-//     if (err) throw err;
-//     dbData = JSON.parse(data);
-//     res.send(dbData);
-//     });
-// });
-
-router.post('/notes', function(req, res) {
-const userNotes = req.body;
-
-console.log(userNotes);
-
-fs.readFile('../db/db.json', (err, data) => {
-    if (err) throw err;
-    dbData = JSON.parse(data);
-    dbData.push(userNotes);
-    console.log(dbData);
-    // let number = 1;
-    // dbData.forEach((note, index) => {
-    //     note.id = number;
-    //     number++;
-    //     return dbData;
-    // });
-    console.log(dbData);
-    stringData = JSON.stringify(dbData);
-    fs.writeFile('../db/db.json', stringData, (err, data) => {
-        if (err) throw err;
-    });
-});
-res.send("Note saved");
-});
-
+router.post("/notes", (req, res) => {
+    readAndAppend(req.body, "db/db.json");
+    res.json(req.body);
+})
 
 module.exports = router;
