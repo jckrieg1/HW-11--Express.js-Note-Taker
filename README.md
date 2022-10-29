@@ -10,10 +10,10 @@
   - [License](#License)
 
   ## Description
+  My motivation to complete this project was to further understand routing and GET and POST requests. I built this project to create a note taker application that makes it easy to write and save notes. This application allows users to write and store their notes in one place as well as delete and update notes. In this project, I learned and praticed routing, GET and POST requests, and running a server. 
 
   ## Usage
-  - To create a team profile webpage
-  - Walk-Through: https://app.castify.com/view/008d13e3-c087-48b7-8692-9627a31dfb7d
+  The usage of this application is to write, save, delete, and update notes. 
 
   ## Contributing
   undefined
