@@ -16,7 +16,7 @@
   The usage of this application is to write, save, delete, and update notes. 
 
   ## Contributing
-  undefined
+
 
   ## Installation
   n/a
